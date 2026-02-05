@@ -24,19 +24,13 @@ export class ProductsService {
   }
 
   async findAvailable(): Promise<Product[]> {
-    return this.productsRepository.find({ 
-      where: { isAvailable: true } 
+    return this.productsRepository.find({
+      where: { isAvailable: true },
     });
   }
 
   async create(createProductDto: CreateProductDto): Promise<Product> {
     const product = this.productsRepository.create(createProductDto);
-    return this.productsRepository.save(product);
-  }
-
-  async updateStock(id: number, quantity: number): Promise<Product> {
-    const product = await this.findOne(id);
-    product.stock = quantity;
     return this.productsRepository.save(product);
   }
 
